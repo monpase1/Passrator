@@ -1,0 +1,29 @@
+body {
+  font-family: Comfortaa;
+}
+div {
+  text-align: center;
+  margin: 20px;
+}
+input {
+  border-radius: 5px;
+  border-color: #000;
+}
+.btn {
+  border-radius: 4px;
+  position: relative;
+  display: none;
+}
+.options {
+  position: absolute;
+}
+.show {
+  display: inline;
+}
+.text {
+  font-size: large;
+  margin: 5px;
+}
+.hide {
+  display: none;
+}
