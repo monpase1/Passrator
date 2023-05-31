@@ -4,69 +4,77 @@ window.addEventListener("DOMContentLoaded", () => {
   const adress = document.getElementById("adress"),
     login = document.getElementById("login"),
     generate = document.getElementById("generate"),
-    gutPass = document.getElementById("password"),
-    reset = document.getElementById("reset"),
-    good = document.getElementById("good"),
-    body = document.querySelector("body"),
-    forms = document.querySelectorAll("form");
+    yes = document.getElementById("yes"),
+    no = document.getElementById("no"),
+    pass = document.getElementById("pass"),
+    form = document.querySelector(".post");
 
-  let counter = 0,
-    password;
+  let password;
 
   const generatePassword = () =>
     Math.random().toString(36).substring(2, 15) +
     Math.random().toString(36).substring(2, 15);
 
   function showOptions() {
-    good.classList.toggle("show");
-    reset.classList.toggle("show");
+    no.classList.add("show");
+    no.classList.remove("hide");
+    yes.classList.add("show");
+    yes.classList.remove("hide");
   }
-  function postData(form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      console.dir(e);
+  function hideOptions() {
+    no.classList.remove("show");
+    no.classList.add("hide");
+    yes.classList.remove("show");
+    yes.classList.add("hide");
+  }
 
-      const req = new XMLHttpRequest();
-      req.open("POST", "server.php", true);
+  function bindPostData(form) {
+    yes.addEventListener("click", (e) => {
+      e.preventDefault();
+      hideOptions();
       const formData = new FormData(form);
-      req.send(formData);
-      req.addEventListener("load", () => {
-        if (req.status === 200) {
-          console.log(req.response);
+      const obj = {};
+      formData.forEach((v, k) => (obj[k] = v));
+
+      postData("http://localhost:3000/requests", JSON.stringify(obj)).then(
+        (data) => {
+          console.log(data);
         }
-      });
+      );
     });
   }
 
-  forms.forEach((form) => postData(form));
-  generate.addEventListener("click", () => {
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: data,
+    });
+
+    return await res.json();
+  };
+
+  generate.addEventListener("click", (e) => {
+    e.preventDefault();
     if (adress.value != "" && adress.value != "https://" && login.value != "") {
-      const info = {
-        adress: adress.value,
-        login: login.value,
-      };
-      adress.classList.add("hide");
-      login.classList.add("hide");
       password = generatePassword();
-      gutPass.innerHTML = password;
+      pass.value = password;
       showOptions();
     }
-    adress.value = "";
-    login.value = "";
+    adress.disable = true;
+    login.disable = true;
   });
-  reset.addEventListener("click", () => {
-    password = generatePassword();
-    gutPass.innerHTML = password;
-  });
-  body.addEventListener("keydown", (e) => {
-    if (e.key === "r") {
-      location.reload();
-    }
-  });
+  // yes.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   hideOptions();
+  //   bindPostData(form);
+  // });
 
-  good.addEventListener("click", (e) => {
+  no.addEventListener("click", (e) => {
     e.preventDefault();
-
-    showOptions();
+    console.dir(form);
   });
+  bindPostData(form);
 });

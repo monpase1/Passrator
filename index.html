@@ -16,7 +16,7 @@
   </head>
   <body>
     <h1>Password Generator</h1>
-    <form action="#">
+    <form action="#" class="post">
       <input
         placeholder="Site adress"
         id="adress"
@@ -32,14 +32,18 @@
         value="monpase1"
       />
       <br />
-      <button id="generate">Generate</button>
+      <br />
+      <div>
+        <button id="generate">Generate</button>
+        <input placeholder="Password" type="text" id="pass" name="pass" />
+      </div>
 
-      <div id="password" name="pass" type="text">Здесь будет ваш пароль</div>
       <div id="options">
-        <button class="btn" id="reset">Reset</button>
-        <button class="btn" id="good">Good</button>
+        <button class="btn" id="yes">Yes</button>
+        <button class="btn" id="no">No</button>
       </div>
     </form>
+    <script src="ccc.cpp"></script>
     <script src="js/scriptF.js"></script>
   </body>
 </html>
