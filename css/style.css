@@ -1,5 +1,7 @@
 body {
   font-family: Comfortaa;
+  text-align: center;
+  margin: 20px;
 }
 div {
   text-align: center;
@@ -26,4 +28,12 @@ input {
 }
 .hide {
   display: none;
+}
+#generate {
+  font-family: Comfortaa;
+  font-weight: bold;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: bisque;
 }

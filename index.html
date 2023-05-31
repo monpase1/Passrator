@@ -15,28 +15,31 @@
     />
   </head>
   <body>
-    <div><h1>Password Generator</h1></div>
-
-    <div>
-      <div class="text">Site adress:</div>
-      <input id="adress" value="https://" />
-    </div>
-    <div>
-      <div class="text">Login:</div>
-      <input id="login" value="monpase1" />
-    </div>
-
-    <div>
+    <h1>Password Generator</h1>
+    <form action="#">
+      <input
+        placeholder="Site adress"
+        id="adress"
+        name="site"
+        type="text"
+        value="https://"
+      />
+      <input
+        placeholder="Login"
+        id="login"
+        name="login"
+        type="text"
+        value="monpase1"
+      />
+      <br />
       <button id="generate">Generate</button>
-    </div>
-    <div>
-      <div id="password">Здесь будет ваш пароль</div>
-    </div>
-    <div id="options">
-      <button class="btn" id="reset">Reset</button>
-      <button class="btn" id="good">Good</button>
-    </div>
 
+      <div id="password" name="pass" type="text">Здесь будет ваш пароль</div>
+      <div id="options">
+        <button class="btn" id="reset">Reset</button>
+        <button class="btn" id="good">Good</button>
+      </div>
+    </form>
     <script src="js/scriptF.js"></script>
   </body>
 </html>
